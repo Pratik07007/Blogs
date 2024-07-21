@@ -36,7 +36,6 @@ export type signUpInputTypes = z.infer<typeof signUpInput>;
 export const postBlogInput = z.object({
   title: z.string(),
   content: z.string(),
-  authorId: z.string(),
 });
 
 export type postBlogInputTypes = z.infer<typeof postBlogInput>;
@@ -44,7 +43,7 @@ export type postBlogInputTypes = z.infer<typeof postBlogInput>;
 export const updateBlogInput = z.object({
   title: z.string(),
   content: z.string(),
-  authorId: z.string(),
+  id: z.string(),
 });
 
 export type updateBlogInputTypes = z.infer<typeof updateBlogInput>;
