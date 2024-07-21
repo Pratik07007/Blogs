@@ -1,5 +1,3 @@
-import { z } from "zod";
-
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
