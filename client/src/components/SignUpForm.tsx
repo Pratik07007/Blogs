@@ -1,7 +1,6 @@
-import React from "react"
 const SignUpForm = () => {
   return (
-    <div>
+    <div className="md:w-1/2 w-screen bg-cyan-200 md:h-screen">
      asdafdasfa   
     </div>
   )

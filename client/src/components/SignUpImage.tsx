@@ -1,8 +1,11 @@
-import React from 'react'
 const SignUpImage = () => {
   return (
-    <div>SignUpImage</div>
-  )
-}
+    <>
+      <div className="md:w-1/2 w-screen bg-green-200 md:h-screen">
+        SignUp IMage
+      </div>
+    </>
+  );
+};
 
-export default SignUpImage
+export default SignUpImage;
