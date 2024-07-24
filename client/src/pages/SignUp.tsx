@@ -1,4 +1,4 @@
-import SignUpImage from "../components/SignUpImage";
+import SignUpImage from "../components/AuthSideImage";
 import SignUpForm from "../components/SignUpForm";
 
 

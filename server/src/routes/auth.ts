@@ -19,7 +19,7 @@ authRouter.post("/signup", async (c) => {
     const { email, password, name } = await c.req.json();
     const response = signUpInput.safeParse({ email, password, name });
     if (!response.success) {
-      return c.json({ error: response.error.issues[0].message }, 400);
+      return c.json({ msg: response.error.issues[0].message });
     }
     const user = await prisma.user.create({
       data: {
@@ -42,7 +42,7 @@ authRouter.post("/signin", async (c) => {
   const { email, password } = await c.req.json();
   const response = signInInputs.safeParse({ email, password});
     if (!response.success) {
-      return c.json({ error: response.error.issues[0].message }, 400);
+      return c.json({ msg: response.error.issues[0].message });
     }
   try {
     const userFound = await prisma.user.findFirst({
