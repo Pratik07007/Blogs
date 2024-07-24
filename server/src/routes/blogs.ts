@@ -38,7 +38,7 @@ blogRouter.post("/", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-  const { title, content } = await c.req.json();
+  const { title, content, imageUrl } = await c.req.json();
   const response = postBlogInput.safeParse({ title, content });
   if (!response.success) {
     return c.json({ error: response.error.issues[0].message }, 400);
@@ -53,11 +53,12 @@ blogRouter.post("/", async (c) => {
       },
     });
     return c.json({
+      succes: true,
       msg: "Blog created succesfully",
       id: post.id,
     });
   } catch (error) {
-    return c.json({ msg: "Blog creation failed" });
+    return c.json({ succes: false, msg: "Blog creation failed" });
   }
 });
 
@@ -93,7 +94,10 @@ blogRouter.put("/", async (c) => {
   const { id, title, content } = await c.req.json();
   const response = updateBlogInput.safeParse({ title, content, id });
   if (!response.success) {
-    return c.json({ error: response.error.issues[0].message }, 400);
+    return c.json(
+      { succes: false, error: response.error.issues[0].message },
+      400
+    );
   }
   try {
     await prisma.post.update({
@@ -105,9 +109,9 @@ blogRouter.put("/", async (c) => {
         content,
       },
     });
-    return c.json({ msg: "updated succesfully" });
+    return c.json({ succes: true, msg: "updated succesfully" });
   } catch (error) {
-    return c.json({ msg: "error while updating blog" });
+    return c.json({ succes: false, msg: "error while updating blog" });
   }
 });
 

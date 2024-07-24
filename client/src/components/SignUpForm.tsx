@@ -1,11 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signUpInputTypes } from "@pratik07007/commons";
 import axios from "axios";
 import BACKEND_URL from "../utils/Backend_Url";
 import toast from "react-hot-toast";
+import Spinner from "./Spinner";
 
 const SignUpForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const [signUpPayload, setSignUpPayload] = useState<signUpInputTypes>({
     name: "",
     email: "",
@@ -16,11 +19,22 @@ const SignUpForm = () => {
     e: FormEvent<HTMLFormElement>
   ): Promise<void> {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await axios.post(
         `${BACKEND_URL}/auth/signup`,
         signUpPayload
       );
+      {
+        response.data.succes
+          ? () => {
+              localStorage.setItem("token", response.data.token);
+              toast.success(response.data.msg);
+              navigate("/");
+            }
+          : toast.error(response.data.msg);
+        setIsLoading(false);
+      }
       // console.log(response.data.msg);
       toast(response.data.msg);
       localStorage.setItem("token", response?.data.token);
@@ -102,10 +116,18 @@ const SignUpForm = () => {
                 </div>
                 <div className="flex items-center justify-between"></div>
                 <button
+                  disabled={isLoading}
                   type="submit"
                   className="w-full border-[0.5px] border-white outline-none hover:bg-blue-400 duration-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                 >
-                  Sign Up
+                  {isLoading ? (
+                    <div className="flex gap-5 items-center">
+                      <Spinner />
+                      <h1 className="text-xl">Loading....</h1>
+                    </div>
+                  ) : (
+                    "Sign Up"
+                  )}
                 </button>
                 <p className="text-sm font-light text-gray-500">
                   Already have an account?{" "}

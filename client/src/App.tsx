@@ -30,17 +30,22 @@ const App = () => {
           path: "blog/:blogId",
           element: <Blog />,
         },
-        {
-          path: "blogs",
-          element: <Blogs />,
-        },
+        // {
+        //   path: "blogs",
+        //   element: <Blogs />,
+        // },
         {
           path: "upload",
           element: <AddBlog />,
-        },{
-          path:"contacts",
-          element: <ContactUs/>
-        }
+        },
+        {
+          path: "contacts",
+          element: <ContactUs />,
+        },
+        {
+          path: "create",
+          element: <AddBlog />,
+        },
       ],
     },
   ]);
