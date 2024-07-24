@@ -26,7 +26,7 @@ const Test = () => {
       </button>{" "}
       <br />
       <br />
-      {/* {file && <div>Selected File: {file.name}</div>} Display selected file name */}
+      
     </>
   );
 };
