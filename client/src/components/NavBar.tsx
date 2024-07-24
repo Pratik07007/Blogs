@@ -22,7 +22,7 @@ const NavBar = () => {
           </div>
         </Link>
 
-        <Avatar name={"Pratik"} />
+        <Avatar />
       </div>
     </div>
   );
