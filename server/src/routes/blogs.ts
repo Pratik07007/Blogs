@@ -50,6 +50,7 @@ blogRouter.post("/", async (c) => {
         title,
         content,
         authorId,
+        imageUrl
       },
     });
     return c.json({

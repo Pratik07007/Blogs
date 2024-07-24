@@ -24,17 +24,11 @@ const AddBlog = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        toast.success("Upload successful:");
         const imageUrl = res.url;
-        //handel backend upload task here !
         useUploadBlog({ title, content, imageUrl });
-        console.log(res);
-        console.log(title);
-        console.log(content);
-        // Handle response as needed (e.g., save URL to state, database, etc.)
       })
       .catch(() => {
-        toast.error("Error uploading image:");
+        toast.error("Error uploading the blog");
       });
   };
 
@@ -66,13 +60,14 @@ const AddBlog = () => {
       </div>
       <div className="flex items-center w-1/2">
         <input onChange={(e: any) => setImage(e.target.files[0])} type="file" />
-        <button
+        
+      </div>
+      <button
           onClick={handleSubmit}
-          className="w-full border border-white hover:bg-blue-400 duration-500 rounded-2xl px-3 py-2 mt-4"
+          className="w-1/2 border border-white hover:bg-blue-400 duration-500 rounded-2xl px-3 py-2 mt-4"
         >
           Upload
         </button>
-      </div>
     </div>
   );
 };
