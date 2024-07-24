@@ -2,8 +2,10 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import useUploadBlog from "../hooks/useUploadBlog";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const AddBlog = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -19,7 +21,7 @@ const AddBlog = () => {
     uploadPayload.append("file", image);
     uploadPayload.append("upload_preset", "pratik_blogs");
     uploadPayload.append("cloud_name", "delnndqb2");
-
+    setIsLoading(true);
     fetch("https://api.cloudinary.com/v1_1/delnndqb2/upload", {
       method: "post",
       body: uploadPayload,
@@ -33,11 +35,13 @@ const AddBlog = () => {
             navigate(`/blog/${res.data.id}`);
           } else {
             toast.error(res.data.msg);
+            setIsLoading(false);
           }
         });
       })
       .catch(() => {
         toast.error("Error uploading the blog");
+        setIsLoading(false);
       });
   };
 
@@ -72,9 +76,17 @@ const AddBlog = () => {
       </div>
       <button
         onClick={handleSubmit}
+        disabled={isLoading}
         className="w-1/2 border border-white hover:bg-blue-400 duration-500 rounded-2xl px-3 py-2 mt-4"
       >
-        Upload
+        {isLoading ? (
+          <div className="flex gap-5 items-center">
+            <Spinner />
+            <h1 className="text-xl">Loading....</h1>
+          </div>
+        ) : (
+          "Upload"
+        )}
       </button>
     </div>
   );
