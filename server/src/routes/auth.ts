@@ -55,7 +55,7 @@ authRouter.post("/signin", async (c) => {
       },
     });
     if (userFound === null) {
-      return c.json({ msg: "Invalid Credentials" });
+      return c.json({ succes: false, msg: "Invalid Credentials" });
     }
     const token: string =
       (await sign({ id: userFound.id }, c.env.JWT_SECRET)) || "";

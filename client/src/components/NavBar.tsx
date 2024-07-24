@@ -13,12 +13,15 @@ const NavBar = () => {
         <Link to={"/"}>
           <div className="font-thin text-2xl cursor-pointer ">Home</div>
         </Link>
-        <Link to={"/blogs"}>
-          <div className="font-thin text-2xl cursor-pointer ">Blogs</div>
-        </Link>
         <Link to={"/contacts"}>
           <div className="font-thin text-2xl cursor-pointer ">Contact Us</div>
         </Link>
+        <Link to={"/upload"}>
+          <div className=" px-3 py-2 rounded-2xl bg-green-400  text-2xl text-black font-medium cursor-pointer ">
+            Create Blog
+          </div>
+        </Link>
+
         <Avatar name={"Pratik"} />
       </div>
     </div>

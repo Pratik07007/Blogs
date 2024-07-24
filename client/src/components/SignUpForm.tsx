@@ -25,21 +25,17 @@ const SignUpForm = () => {
         `${BACKEND_URL}/auth/signup`,
         signUpPayload
       );
-      {
-        response.data.succes
-          ? () => {
-              localStorage.setItem("token", response.data.token);
-              toast.success(response.data.msg);
-              navigate("/");
-            }
-          : toast.error(response.data.msg);
-        setIsLoading(false);
+      if (response?.data?.succes) {
+        toast.success(response?.data?.msg);
+        localStorage.setItem("token", response.data.token);
+        navigate("/"); 
+      } else {
+        toast.error(response.data.msg);
       }
-      // console.log(response.data.msg);
-      toast(response.data.msg);
-      localStorage.setItem("token", response?.data.token);
     } catch (error) {
       toast.error("Server side exception occured please try again later");
+    } finally {
+      setIsLoading(false);
     }
   }
 
