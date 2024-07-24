@@ -1,8 +1,10 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import useUploadBlog from "../hooks/useUploadBlog";
+import { useNavigate } from "react-router-dom";
 
 const AddBlog = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
@@ -25,7 +27,14 @@ const AddBlog = () => {
       .then((res) => res.json())
       .then((res) => {
         const imageUrl = res.url;
-        useUploadBlog({ title, content, imageUrl });
+        useUploadBlog({ title, content, imageUrl }).then((res) => {
+          if (res.data.succes) {
+            toast.success(res.data.msg);
+            navigate(`/blog/${res.data.id}`);
+          } else {
+            toast.error(res.data.msg);
+          }
+        });
       })
       .catch(() => {
         toast.error("Error uploading the blog");
@@ -60,14 +69,13 @@ const AddBlog = () => {
       </div>
       <div className="flex items-center w-1/2">
         <input onChange={(e: any) => setImage(e.target.files[0])} type="file" />
-        
       </div>
       <button
-          onClick={handleSubmit}
-          className="w-1/2 border border-white hover:bg-blue-400 duration-500 rounded-2xl px-3 py-2 mt-4"
-        >
-          Upload
-        </button>
+        onClick={handleSubmit}
+        className="w-1/2 border border-white hover:bg-blue-400 duration-500 rounded-2xl px-3 py-2 mt-4"
+      >
+        Upload
+      </button>
     </div>
   );
 };

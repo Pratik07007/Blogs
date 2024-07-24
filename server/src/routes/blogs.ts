@@ -76,6 +76,7 @@ blogRouter.get("single/:id", async (c) => {
       id: true,
       title: true,
       content: true,
+      imageUrl:true,
       author: {
         select: {
           name: true,
