@@ -3,7 +3,6 @@ import { motion, stagger, useAnimate, useInView } from "framer-motion";
 import { useEffect } from "react";
 import { cn } from "../lib/cn";
 
-
 export const LandingPage = ({
   words,
   className,
@@ -54,10 +53,7 @@ export const LandingPage = ({
                 <motion.span
                   initial={{}}
                   key={`char-${index}`}
-                  className={cn(
-                    `dark:text-white text-black opacity-0 hidden`,
-                    word.className
-                  )}
+                  className={cn(`text-white opacity-0 hidden`, word.className)}
                 >
                   {char}
                 </motion.span>
@@ -126,7 +122,7 @@ export const LandingPageSmooth = ({
               {word.text.map((char, index) => (
                 <span
                   key={`char-${index}`}
-                  className={cn(`dark:text-white text-black `, word.className)}
+                  className={cn(`text-white `, word.className)}
                 >
                   {char}
                 </span>
