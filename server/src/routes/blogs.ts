@@ -50,7 +50,7 @@ blogRouter.post("/", async (c) => {
         title,
         content,
         authorId,
-        imageUrl
+        imageUrl,
       },
     });
     return c.json({
@@ -76,7 +76,8 @@ blogRouter.get("single/:id", async (c) => {
       id: true,
       title: true,
       content: true,
-      imageUrl:true,
+      imageUrl: true,
+      createdAt: true,
       author: {
         select: {
           name: true,
@@ -97,8 +98,8 @@ blogRouter.put("/", async (c) => {
   const response = updateBlogInput.safeParse({ title, content, id });
   if (!response.success) {
     return c.json(
-      { succes: false, error: response.error.issues[0].message },
-      400
+      { succes: false, error: response.error.issues[0].message }
+      
     );
   }
   try {
@@ -126,6 +127,7 @@ blogRouter.get("/all", async (c) => {
       content: true,
       title: true,
       id: true,
+      createdAt: true,
       author: {
         select: {
           name: true,

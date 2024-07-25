@@ -1,9 +1,7 @@
-import { useParams } from "react-router-dom";
+import SinglePageBlogCard from "../components/SingleBlogcard";
 
 const Blog = () => {
-  const url = useParams();
-
-  return <div>{JSON.stringify(url)}</div>; //gives back the url params
+  return <SinglePageBlogCard />;
 };
 
 export default Blog;
