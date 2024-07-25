@@ -1,5 +1,6 @@
+import convertToLocalTime from "../utils/convertToLocalTime";
 import Avatar from "./Avatar";
-import convertToLocalTime from '../utils/';
+
 
 const SinglePageBlogCard = ({
   blog,
