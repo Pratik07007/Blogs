@@ -1,6 +1,6 @@
-import Avatar from "../components/Avatar";
+import Avatar from "./Avatar"; // Import Avatar component if needed
 
-const SinglePageBlogCard = () => {
+const SinglePageBlogCard = ({ blog }: any) => {
   const convertToLocalTime = (dbLocalTime: string) => {
     var date = new Date(dbLocalTime);
     return date.toLocaleString("en-US", {
@@ -13,20 +13,20 @@ const SinglePageBlogCard = () => {
       hour12: false,
     });
   };
-  console.log(convertToLocalTime("2024-07-25T08:09:03.011Z"));
+
   return (
-    <div className="h-screen w-screen ">
-      <div className="h-1/2 w-1/2 border border-white">
-        <div className="flex items-center gap-4">
-          <Avatar name="Pratik" size={30} />
-          <h1>Pratik Dhimal</h1>
-          <h1>Uplaod Time</h1>
+    <div className="h-screen w-screen flex justify-center items-center">
+      <div className="w-1/2 border border-gray-200 p-4">
+        <div className="flex items-center gap-4 mb-4">
+          <Avatar name={blog?.author?.name} size={30} />
+          <div>
+            <h1 className="text-xl font-bold">{blog?.author?.name}</h1>
+            <p className="text-gray-500">{convertToLocalTime(blog?.createdAt)}</p>
+          </div>
         </div>
-        <div>
-          <h1>TITLE</h1>
-        </div>
-        <div>Image</div>
-        <div>Desc</div>
+        <h1 className="text-2xl font-bold mb-2">{blog?.title}</h1>
+        <img src={blog?.imageUrl} alt={blog?.title} className="w-full h-auto mb-4" />
+        <p className="text-lg">{blog?.content}</p>
       </div>
     </div>
   );
