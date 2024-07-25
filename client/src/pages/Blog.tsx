@@ -5,27 +5,27 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Blog = () => {
-  const [blog, setBlog] = useState({
-    id: String,
-    title: String,
-    content: String,
-    imageUrl: String,
-    createdAt: String,
-    author: {
-      name: String,
-      id: String,
-    },
-  });
+  const [blog, setBlog] = useState(null);
+
   const { blogId } = useParams();
 
   useEffect(() => {
     axios
       .get(`${BACKEND_URL}/blog/single/${blogId}`)
-      .then((res) => setBlog(res.data))
-      .catch((err) => console.error("Error fetching blog:", err));
+      .then((res) => {
+        setBlog(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching blog:", err);
+      });
   }, [blogId]);
 
-  return <SinglePageBlogCard />;
+  // Render SinglePageBlogCard only when blog data is available
+  return (
+    <div>
+      <SinglePageBlogCard blog={blog} />
+    </div>
+  );
 };
 
 export default Blog;
