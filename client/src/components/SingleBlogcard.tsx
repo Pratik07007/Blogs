@@ -1,4 +1,5 @@
 import Avatar from "./Avatar";
+import convertToLocalTime from '../utils/';
 
 const SinglePageBlogCard = ({
   blog,
@@ -15,17 +16,7 @@ const SinglePageBlogCard = ({
     };
   };
 }) => {
-  const convertToLocalTime = (dbLocalTime: string) => {
-    var date = new Date(dbLocalTime);
-    return date.toLocaleString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-  };
+ 
 
   return (
     <div className="flex justify-center items-center overflow-x-hidden">

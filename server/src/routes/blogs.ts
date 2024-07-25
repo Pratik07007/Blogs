@@ -128,6 +128,7 @@ blogRouter.get("/all", async (c) => {
       title: true,
       id: true,
       createdAt: true,
+      imageUrl:true,
       author: {
         select: {
           name: true,

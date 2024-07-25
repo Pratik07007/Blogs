@@ -11,7 +11,7 @@ import {
 const NavBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="h-[10vh] w-screen sm:flex sm:justify-between sm:items-center px-16 border-b-[0.5px] border-slate-400 hidden ">
+    <div className="h-[10vh] w-screen sm:flex sm:justify-between sm:items-center px-16 border-b-[0.1px] border-white hidden ">
       <Link to={"/"}>
         <div className="font-normal text-2xl cursor-pointer ">
           PRATIK DHIMAL
@@ -24,11 +24,20 @@ const NavBar = () => {
         <Link to={"/contacts"}>
           <div className="font-thin text-2xl cursor-pointer ">Contact Us</div>
         </Link>
-        <Link to={"/upload"}>
-          <div className=" px-3 py-2 rounded-2xl bg-green-400  text-2xl text-black font-medium cursor-pointer ">
-            Create Blog
-          </div>
-        </Link>
+        {localStorage.getItem("token") ? (
+          <Link to={"/upload"}>
+            <div className=" px-3 py-2 rounded-2xl bg-green-400  text-2xl text-black font-medium cursor-pointer ">
+              Create Blog
+            </div>
+          </Link>
+        ) : (
+          <Link to={"/signin"}>
+            <div className=" px-3 py-2 rounded-2xl bg-green-400  text-2xl text-black font-medium cursor-pointer ">
+              Sign in to create blog
+            </div>
+          </Link>
+        )}
+
         <div>
           {localStorage.getItem("token") ? (
             <DropdownMenu>
