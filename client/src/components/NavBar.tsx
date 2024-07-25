@@ -33,7 +33,7 @@ const NavBar = () => {
           {localStorage.getItem("token") ? (
             <DropdownMenu>
               <DropdownMenuTrigger className="outline-none">
-                <Avatar />
+                <Avatar size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="rounded-2xl mt-3 hover:bg-blue-400 duration-500">
                 <DropdownMenuItem
@@ -48,7 +48,7 @@ const NavBar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Avatar />
+            <Avatar size={16} />
           )}
         </div>
       </div>

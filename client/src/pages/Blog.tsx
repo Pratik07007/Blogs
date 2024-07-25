@@ -11,7 +11,11 @@ const Blog = () => {
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/blog/single/${blogId}`)
+      .get(`${BACKEND_URL}/blog/single/${blogId}`, {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      })
       .then((res) => {
         setBlog(res.data);
       })
@@ -20,9 +24,8 @@ const Blog = () => {
       });
   }, [blogId]);
 
-  // Render SinglePageBlogCard only when blog data is available
   return (
-    <div>
+    <div className="flex items-center justify-center">
       <SinglePageBlogCard blog={blog} />
     </div>
   );
