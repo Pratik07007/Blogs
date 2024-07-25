@@ -1,10 +1,59 @@
-
 const ContactUs = () => {
   return (
-    <div>
-      Contact us
-    </div>
-  )
-}
+    <section>
+      <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-white ">
+          Contact Us
+        </h2>
+        <p className="mb-8 lg:mb-16 font-light text-center text-white sm:text-xl">
+          Got a technical issue? Want to send feedback about a beta feature?
+        </p>
+        <form action="#" className="space-y-8">
+          <div>
+            <label className="block mb-2 text-sm font-medium text-white ">
+              Your email
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="shadow-sm placeholder:text-gray-500 bg-gray-50 border border-gray-300 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
+              placeholder="name@flowbite.com"
+              required
+            />
+          </div>
+          <div>
+            <label className="block mb-2 text-sm font-medium text-white ">
+              Subject
+            </label>
+            <input
+              type="text"
+              id="subject"
+              className=" placeholder:text-gray-500 block p-3 w-full text-sm text-white bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 "
+              placeholder="Let us know how we can help you"
+              required
+            />
+          </div>
+          <div className="sm:col-span-2">
+            <label className="block mb-2 text-sm font-medium text-white dark:text-gray-400">
+              Your message
+            </label>
+            <textarea
+              id="message"
+              rows={6}
+              className=" placeholder:text-gray-500 block p-2.5 w-full text-sm text-white bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              placeholder="Leave a comment..."
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            className="py-3 px-5 border-[0.2px] hover:bg-blue-400 duration-500 rounded-2xl text-sm font-medium text-center text-white bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          >
+            Send message
+          </button>
+        </form>
+      </div>
+    </section>
+  );
+};
 
-export default ContactUs
+export default ContactUs;
