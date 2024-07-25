@@ -27,5 +27,6 @@ model Post{
   content String
   imageUrl String @default("https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg")
   authorId String
+  createdAt DateTime @default(now())
   author User @relation(fields: [authorId], references: [id]) 
 }

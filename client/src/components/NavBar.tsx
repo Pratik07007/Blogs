@@ -1,7 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "./Avatar";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../components/ui/dropdown-menu";
+
 const NavBar = () => {
+  const navigate = useNavigate();
   return (
     <div className="h-[10vh] w-screen sm:flex sm:justify-between sm:items-center px-16 border-b-[0.5px] border-slate-400 hidden ">
       <Link to={"/"}>
@@ -21,8 +29,28 @@ const NavBar = () => {
             Create Blog
           </div>
         </Link>
-
-        <Avatar />
+        <div>
+          {localStorage.getItem("token") ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger className="outline-none">
+                <Avatar />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="rounded-2xl mt-3 hover:bg-blue-400 duration-500">
+                <DropdownMenuItem
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    navigate("/");
+                  }}
+                  className="text-xl py-2  "
+                >
+                  Log out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Avatar />
+          )}
+        </div>
       </div>
     </div>
   );
