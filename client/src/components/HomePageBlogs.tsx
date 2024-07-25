@@ -3,6 +3,16 @@ import HomePageSingleBlog from "./HomePageSingleBlog";
 import axios from "axios";
 import BACKEND_URL from "../utils/Backend_Url";
 import HomePageBlogCardSkleton from "./skeletons/HomePageBlogCardSkleton";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../components/ui/pagination"
+
 
 const HomePageBlogs = () => {
   const [blogs, setBlogs] = useState<any[]>([]);
@@ -32,7 +42,7 @@ const HomePageBlogs = () => {
           <HomePageBlogCardSkleton />
           <HomePageBlogCardSkleton />
           <HomePageBlogCardSkleton />
-          <HomePageBlogCardSkleton />
+          
         </>
       ) : (
         blogs.map((blog) => {
@@ -49,6 +59,22 @@ const HomePageBlogs = () => {
           );
         })
       )}
+      <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious size={undefined} />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" size={undefined}>1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationEllipsis />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" size={undefined} />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
     </div>
   );
 };
