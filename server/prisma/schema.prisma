@@ -30,3 +30,10 @@ model Post{
   createdAt DateTime @default(now())
   author User @relation(fields: [authorId], references: [id]) 
 }
+
+model Contact{
+  id String @id @default(uuid())
+  email String
+  subject String
+  message String
+}

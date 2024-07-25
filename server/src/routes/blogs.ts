@@ -29,10 +29,6 @@ blogRouter.use("/*", async (c, next) => {
   }
 });
 
-blogRouter.post("/upload", async (c) => {
-  const body = await c.req.parseBody();
-  return c.json({ body });
-});
 
 blogRouter.post("/", async (c) => {
   const prisma = new PrismaClient({
