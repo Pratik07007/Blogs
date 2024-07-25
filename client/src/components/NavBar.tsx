@@ -13,9 +13,7 @@ const NavBar = () => {
   return (
     <div className="h-[10vh] w-screen sm:flex sm:justify-between sm:items-center px-16 border-b-[0.1px] border-white hidden ">
       <Link to={"/"}>
-        <div className="font-normal text-2xl cursor-pointer ">
-          PRATIK DHIMAL
-        </div>
+        <div className="font-normal text-2xl cursor-pointer ">THE BLOG</div>
       </Link>
       <div className="flex gap-5 items-center">
         <Link to={"/"}>
