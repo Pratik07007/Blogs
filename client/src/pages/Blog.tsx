@@ -39,6 +39,7 @@ const Blog = () => {
   return (
     <>
       {isLoading ? <SingleBlogSkelton /> : <SinglePageBlogCard blog={blog} />}
+      
     </>
   );
 };

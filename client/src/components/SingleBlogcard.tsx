@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import convertToLocalTime from "../utils/convertToLocalTime";
 import Avatar from "./Avatar";
-
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 const SinglePageBlogCard = ({
   blog,
@@ -17,12 +18,16 @@ const SinglePageBlogCard = ({
     };
   };
 }) => {
- 
-
+  const navigation = useNavigate();
+  console.log(navigation);
   return (
     <div className="flex justify-center items-center overflow-x-hidden">
       <div className="w-[80%] md:w-2/3 border border-gray-200 p-4 mt-16">
         <div className="flex items-center gap-4 mb-4">
+          <h1>
+            <IoMdArrowRoundBack onClick={() =>navigation(-1)} className="text-3xl hover:text-gray-500 duration-400" />
+          </h1>
+
           <Avatar name={blog?.author?.name} size={4} />
           <div>
             <h1 className="text-xl font-bold">{blog?.author?.name}</h1>
