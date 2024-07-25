@@ -1,6 +1,20 @@
 import Avatar from "./Avatar";
 
-const SinglePageBlogCard = ({ blog }: any) => {
+const SinglePageBlogCard = ({
+  blog,
+}: {
+  blog: {
+    id: string;
+    title: string;
+    content: string;
+    imageUrl: string;
+    createdAt: string;
+    author: {
+      name: string;
+      id: string;
+    };
+  };
+}) => {
   const convertToLocalTime = (dbLocalTime: string) => {
     var date = new Date(dbLocalTime);
     return date.toLocaleString("en-US", {
@@ -38,7 +52,3 @@ const SinglePageBlogCard = ({ blog }: any) => {
 };
 
 export default SinglePageBlogCard;
-
-
-
-

@@ -6,12 +6,21 @@ import axios from "axios";
 import SingleBlogSkelton from "../components/skeletons/SingleBlogSkelton";
 
 const Blog = () => {
-  const [blog, setBlog] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [blog, setBlog] = useState({
+    id: "",
+    title: "",
+    content: "",
+    imageUrl: "",
+    createdAt: "",
+    author: {
+      name: "",
+      id: "",
+    },
+  });
   const { blogId } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
     axios
       .get(`${BACKEND_URL}/blog/single/${blogId}`, {
         headers: {
@@ -20,7 +29,7 @@ const Blog = () => {
       })
       .then((res) => {
         setBlog(res.data);
-        setIsLoading(false)
+        setIsLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching blog:", err);
