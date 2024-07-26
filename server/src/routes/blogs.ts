@@ -29,7 +29,6 @@ blogRouter.use("/*", async (c, next) => {
   }
 });
 
-
 blogRouter.post("/", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
@@ -93,10 +92,7 @@ blogRouter.put("/", async (c) => {
   const { id, title, content } = await c.req.json();
   const response = updateBlogInput.safeParse({ title, content, id });
   if (!response.success) {
-    return c.json(
-      { succes: false, error: response.error.issues[0].message }
-      
-    );
+    return c.json({ succes: false, error: response.error.issues[0].message });
   }
   try {
     await prisma.post.update({
@@ -118,19 +114,28 @@ blogRouter.get("/all", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
+  const pageNo = c.req.query("pageNo") || "";
+  const parsedPageNo: number = Number(pageNo);
+  const skip: number = (parsedPageNo-1) * 6;
+
   const blogs = await prisma.post.findMany({
+    take: 6,
+    skip,
     select: {
       content: true,
       title: true,
       id: true,
       createdAt: true,
-      imageUrl:true,
+      imageUrl: true,
       author: {
         select: {
           name: true,
           id: true,
         },
       },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
   return c.json(blogs);
