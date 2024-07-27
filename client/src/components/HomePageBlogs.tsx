@@ -7,7 +7,7 @@ import Spinner from "./Spinner";
 
 const HomePageBlogs = () => {
   const [blogs, setBlogs] = useState<any[]>([]);
-  const [pageNo, setPageNo] = useState(1);
+  const [pageNo] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     axios
