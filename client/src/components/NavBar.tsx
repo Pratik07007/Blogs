@@ -64,14 +64,24 @@ const NavBar = () => {
                 <VscThreeBars className="text-3xl cursor-pointer" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="border-white border rounded-2xl mt-8 hover:bg-blue-400 w-32  text-center cursor-pointer duration-500">
-                <DropdownMenuItem className="border-b px-2 py-1 " onClick={() => navigate("/")}>
+                <DropdownMenuItem
+                  className="border-b px-2 py-1 "
+                  onClick={() => navigate("/")}
+                >
                   Home
                 </DropdownMenuItem>
-                <DropdownMenuItem className="border-b px-2 py-1 " onClick={() => navigate("/contacts")}>
+                <DropdownMenuItem
+                  className="border-b px-2 py-1 "
+                  onClick={() => navigate("/contacts")}
+                >
                   Contact us
                 </DropdownMenuItem>
-                <DropdownMenuItem className=" px-2 py-1"
-                  onClick={() => localStorage.removeItem("token")}
+                <DropdownMenuItem
+                  className=" px-2 py-1"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    navigate("/");
+                  }}
                 >
                   Log out ?
                 </DropdownMenuItem>
