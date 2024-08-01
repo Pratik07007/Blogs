@@ -114,13 +114,11 @@ blogRouter.get("/all", async (c) => {
   const prisma = new PrismaClient({
     datasourceUrl: c.env.DATABASE_URL,
   }).$extends(withAccelerate());
-  const pageNo = c.req.query("pageNo") || "";
-  const parsedPageNo: number = Number(pageNo);
-  const skip: number = (parsedPageNo-1) * 6;
+  // const pageNo = c.req.query("pageNo") || "";
+  // const parsedPageNo: number = Number(pageNo);
+  // const skip: number = (parsedPageNo-1) * 6;
 
   const blogs = await prisma.post.findMany({
-    take: 6,
-    skip,
     select: {
       content: true,
       title: true,
